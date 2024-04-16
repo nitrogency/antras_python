@@ -33,7 +33,3 @@ class Customer:
     @get_name.setter # funkcija, naudojama kliento vardo pakeitimui. 'setter' metodas, leidziantis pakeisti privacia reiksme.
     def set_name(self, name):
         self.__name = name
-
-c1 = Customer("Jonas Jonaitis")
-print(c1.get_identifier())
-print(c1.full_info())
