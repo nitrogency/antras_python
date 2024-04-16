@@ -10,17 +10,24 @@
         __identifier: Privatus kliento identifikatorius. Prieinamas tik iš klasės metodų.
 """
 
+from shop_items import Food, Drink
+
 class Customer:
     # identifikatorius, kuris leidzia atpazinti, kiek vartotoju yra ir kelintas
     # yra vartotojas
     identifier = 0
 
-    def __init__(self, name): # konstruktorius, priimantis duota varda
+    def __init__(self, name, shopping_cart = None): 
+        # Inicijuojamas klientas su vardu ir pasirenkamu pirkinių krepšeliu
         if not isinstance(name, str) or len(name) == 0: # patikrina, ar vardas yra ne skaicius ar kt. ir ar jis nera tuscias
             raise TypeError("Vardas turi buti tinkamo tipo ir ilgesnis uz 0") # jei taip, ismetama klaida
-        self.__name = name # nustatomas toks vardas klientui, koks buvo duotas konstruktoryje
-        Customer.identifier = Customer.identifier + 1 # identifikatorius padidinimas sukurus nauja klienta
+        self.__name = name  # nustatomas toks vardas klientui, koks buvo duotas konstruktoryje
+        Customer.identifier += 1 # identifikatorius padidinimas sukurus nauja klienta
         self.identifier = Customer.identifier # identifikatoriaus reiksme priskiriama klientui
+
+        if shopping_cart is None:
+            shopping_cart = []  # Inicijuojamas tuščią pirkinių krepšelį, jei jo nėra
+        self.shopping_cart = shopping_cart  # Pirkėjui priskiriamas pateiktas prekių krepšelis
 
     def full_info(self): # isspausdina visa informacija apie klienta
         return "Vardas: " + self.__name + " | " + str(self.identifier)
@@ -32,4 +39,21 @@ class Customer:
         return self.__name
     @get_name.setter # funkcija, naudojama kliento vardo pakeitimui. 'setter' metodas, leidziantis pakeisti privacia reiksme.
     def set_name(self, name):
-        self.__name = name
+        self.__name = name   
+
+    def add_item(self, item):  
+        # Prekės įdėjimo į kliento pirkinių krepšelį metodas
+        if not isinstance(item, (Food, Drink)):
+            raise TypeError("Item must be an instance of Food or Drink")
+        self.shopping_cart.append(item)  # Įdedama prekė į pirkinių krepšelį
+
+    def remove_item(self, index):  
+        # Prekės pašalinimo iš kliento krepšelio metodas
+        try:
+            del self.shopping_cart[index]  # Pašalinamas elementas nurodytame indekse
+        except IndexError:
+            print("Error removing item: Index out of range")
+
+    def get_items(self):  
+        # Metodas gauti visų pirkėjo pirkinių krepšelyje esančių prekių sąrašą
+        return [item.full_info() for item in self.shopping_cart]
