@@ -38,7 +38,7 @@ class Customer:
     def set_name(self, name):
         self.__name = name
 
-"""
+    """
     Užduotis #4
         Pridėtos funkcijos: add_item(), remove_item(), get_items() leidžia valdyti pirkinių krepšelį.
 
@@ -48,8 +48,8 @@ class Customer:
         
     Rezultatas:
         Programa palengvina klientų objektų kūrimą su galimybe valdyti pirkinių krepšelius su maisto ir gėrimų prekėmis. Ji palaiko prekių pridėjimą ir pašalinimą iš krepšelio ir suteikia galimybę gauti visų prekių sąrašą su jų informacija.
-"""   
-
+    """
+    
     def add_item(self, item):  
         # Prekės įdėjimo į kliento pirkinių krepšelį metodas
         if not isinstance(item, (Food, Drink)):
