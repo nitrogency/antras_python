@@ -26,7 +26,7 @@ class Item:
 
         if not isinstance(quantity, int): # Tikrinama ar kiekis yra sveikas skaičius
             raise TypeError("Prekės kiekis yra netinkamo tipo")
-        elif quantity < 1: # Tikrinama ar kiekis nėra mažesnis už vieną
+        elif quantity < 0: # Tikrinama ar kiekis nėra mažesnis už vieną
             raise ValueError("Prekės kiekis negali būti mažiau negų vienas")
         
         if not isinstance(price, float) and not isinstance(price, int): # Tikrinama ar kaina yra skaičius
