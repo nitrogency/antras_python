@@ -11,11 +11,11 @@
         Programa sukuria nurodytus prekių objektus ir atlieka Item klasės funkcijas full_info() ir to_dict().
 """
 
-import shop_items
+from shop_items import Item
 
-i1 = shop_items.Item("Morkos")
-i2 = shop_items.Item("Pienas", 2, 1.5)
-i3 = shop_items.Item("Batonas", price=0.5)
+i1 = Item("Morkos")
+i2 = Item("Pienas", 2, 1.5)
+i3 = Item("Batonas", price=0.5)
 
 print(i1.full_info())
 print(i2.full_info())
