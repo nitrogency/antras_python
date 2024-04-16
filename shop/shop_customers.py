@@ -20,17 +20,20 @@ class Customer:
             raise TypeError("Vardas turi buti tinkamo tipo ir ilgesnis uz 0") # jei taip, ismetama klaida
         self.__name = name # nustatomas toks vardas klientui, koks buvo duotas konstruktoryje
         Customer.identifier = Customer.identifier + 1 # identifikatorius padidinimas sukurus nauja klienta
-        self.__identifier = Customer.identifier # identifikatoriaus reiksme priskiriama klientui
+        self.identifier = Customer.identifier # identifikatoriaus reiksme priskiriama klientui
 
     def full_info(self): # isspausdina visa informacija apie klienta
-        print("Vardas: " + self.__name + " | " + str(self.__identifier))
+        return "Vardas: " + self.__name + " | " + str(self.identifier)
 
-    @property
     def get_identifier(self): # grazina kliento identifikatoriu
-        return self.__identifier
+        return self.identifier
     @property
     def get_name(self): # grazina kliento varda. @property reikalinga tam, nes 'name' kintamasis yra privatus. 'getter' metodas, grazinantis reiksme. 
         return self.__name
     @get_name.setter # funkcija, naudojama kliento vardo pakeitimui. 'setter' metodas, leidziantis pakeisti privacia reiksme.
     def set_name(self, name):
         self.__name = name
+
+c1 = Customer("Jonas Jonaitis")
+print(c1.get_identifier())
+print(c1.full_info())
