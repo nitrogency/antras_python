@@ -1,15 +1,13 @@
 """
     Užduotis #4
-    Programą sudaro maisto ir gėrimų klasės, taip pat klientų klasė. Kiekvienoje prekių klasėje yra pavadinimo, kiekio ir kainos 
-    atributai, taip pat metodai, skirti apskaičiuoti bendrą kainą ir generuoti suformatuotą informacijos eilutę. 
-    Klientų klasė valdo pirkinių krepšelį, leidžiantį pridėti ir išimti maisto ir gėrimų prekes. 
+    Kliento (Customer) iš shop_customers.py, Maisto (Food) ir Gėrimo (Drink) iš shop_items.py, naudojimas prekių krepšelyje.
 
     Parametrai:
-        - name (string): nurodo kliento vardą ir pavardę.
-        - shopping_cart (list, optional): maisto ir gėrimų objektų, reprezentuojančių kliento pirkinių krepšelį, sąrašas. Pagal default nustatymus sąrašas yra tuščias.
+        c1 (Customer) - pirmasis klientas.
+        c2 (Customer) - antrasis klientas.
         
     Rezultatas:
-        Programa palengvina klientų objektų kūrimą su galimybe valdyti pirkinių krepšelius su maisto ir gėrimų prekėmis. Ji palaiko prekių pridėjimą ir pašalinimą iš krepšelio ir suteikia galimybę gauti visų prekių sąrašą su jų informacija.
+        Programa prideda nurodytus klientus su jų prekių krepšelias. Yra atspausdinami jų prekės iš krepšelių ir atliekamos įvairios funckijos keičiant krepšelius.
 """
 
 from shop_customers import Customer
