@@ -24,6 +24,16 @@ class Item:
         elif not isinstance(name, str): # Tikrinama ar pavadinimas yra tekstas
             raise TypeError("Prekės pavadinimas turi būti tekstas")
 
+        if not isinstance(quantity, int): # Tikrinama ar kiekis yra sveikas skaičius
+            raise TypeError("Prekės kiekis yra netinkamo tipo")
+        elif quantity < 1: # Tikrinama ar kiekis nėra mažesnis už vieną
+            raise ValueError("Prekės kiekis negali būti mažiau negų vienas")
+        
+        if not isinstance(price, float) and not isinstance(price, int): # Tikrinama ar kaina yra skaičius
+            raise TypeError("Prekės kaina yra netinkamo tipo")
+        elif price <= 0: # Tikrinama ar kaina nėra neigiama
+            raise ValueError("Prekės kaina negali būti neigiama")
+
         self.name = name
         self.quantity = quantity
         self.price = price
