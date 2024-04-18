@@ -12,20 +12,23 @@ import json
         __identifier: Privatus kliento identifikatorius. Prieinamas tik iš klasės metodų.
 """
 
-from shop_items import Food, Drink
+from shop.shop_items import Food, Drink
 
 class Customer:
     # identifikatorius, kuris leidzia atpazinti, kiek vartotoju yra ir kelintas
     # yra vartotojas
     identifier = 0
 
-    def __init__(self, name, shopping_cart = []):
+    def __init__(self, name, shopping_cart = None):
         # Inicijuojamas klientas su vardu ir pasirenkamu pirkinių krepšeliu. Jeigu krepšelis nusuteiktas, jis numatyta reikšmė tuščias masyvas.
         if not isinstance(name, str) or len(name) == 0: # patikrina, ar vardas yra ne skaicius ar kt. ir ar jis nera tuscias
             raise TypeError("Vardas turi buti tinkamo tipo ir ilgesnis uz 0") # jei taip, ismetama klaida
         self.__name = name  # nustatomas toks vardas klientui, koks buvo duotas konstruktoryje
         Customer.identifier += 1 # identifikatorius padidinimas sukurus nauja klienta
         self.identifier = Customer.identifier # identifikatoriaus reiksme priskiriama klientui
+
+        if shopping_cart is None: # Jeigu krepšelis nusuteiktas, suteikiamas tuščias krepšelis.
+            shopping_cart = []
         self.shopping_cart = shopping_cart  # Pirkėjui priskiriamas pateiktas prekių krepšelis
 
     def full_info(self): # isspausdina visa informacija apie klienta
