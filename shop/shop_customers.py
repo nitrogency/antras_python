@@ -12,7 +12,7 @@ import json
         __identifier: Privatus kliento identifikatorius. Prieinamas tik iš klasės metodų.
 """
 
-from shop_items import Food, Drink
+from shop.shop_items import Food, Drink
 
 class Customer:
     # identifikatorius, kuris leidzia atpazinti, kiek vartotoju yra ir kelintas
