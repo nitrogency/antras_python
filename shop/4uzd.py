@@ -11,7 +11,7 @@
 """
 
 from shop.shop_customers import Customer
-from sshop.shop_items import Food, Drink
+from shop.shop_items import Food, Drink
 
 # Pavyzdinis panaudojimas:
 c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
