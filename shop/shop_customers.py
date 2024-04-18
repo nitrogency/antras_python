@@ -1,3 +1,5 @@
+import json
+
 """
     Užduotis #1
     Kliento klasė, leidžianti priskirti vardą bei automatiškai priskirianti
@@ -66,3 +68,71 @@ class Customer:
     def get_items(self):  
         # Metodas gauti visų pirkėjo pirkinių krepšelyje esančių prekių sąrašą
         return [item.full_info() for item in self.shopping_cart]
+    
+    """
+    Užduotis #5
+        Pridėtos funkcijos: export_to_json (kliento duomenų eksportavimo funkcija į json failą)
+        from_json (kliento duomenų importavimo funkcija iš json failo)
+
+    Parametrai:
+        customer_data: eksportuojami duomenys į json failą
+        file_path: failo keliui nurodyti naudojamas kintamasis
+        data: skirtas užkrauti importuojamus duomenis iš json failo
+
+    Rezultatas:
+        Programa leidžia eksportuoti kliento duomenis į json failą, kurį reikia susikurti pačiam.
+        Taip pat programa leidžia nuskaityti ir importuoti kliento duomenis iš json failo.
+    """
+    # Duomenų eksportavimo į json failą metodas
+    def export_to_json(self, file_path):
+        
+        customer_data = { # Visų eksportavimui reikiamų duomenų žodynas 
+            "name": self.__name,
+            "identifier": self.identifier,
+            "items": [item.to_dict() for item in self.shopping_cart] # Praeina pro kiekvieną pirkinį pirkinių krepšelyje
+        }
+
+        try:
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(customer_data, file, indent=4, ensure_ascii=False) # Customer_data nurodo ką eksportuoti, file nurodo kur, indent=4 suformatuoja eksportuot1 tekstą iki keturių tarpelių (tab), ensure_ascii=False leidžia lietuviškas raides
+        except Exception as e:
+            print(f"Error: {e}")
+    
+    # Duomenų importavimo iš json failo metodas
+    @classmethod
+    def from_json(cls, file_path):
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                data = json.load(file) # Užkrauna duomenis iš json failo
+
+            name = data.get("name") # Gaunamas kliento vardas
+            identifier = data.get("identifier") # Gaunamas kliento identifikatorius
+            items_data = data.get("items", []) # Gaunamas pirkinių krepšelis
+
+            # Sukuriamas naujas kintamasis perteikti kliento vardą bei indikatorių konsolėje
+            customer = cls(name)
+            customer.identifier = identifier
+
+            # Praeinama pro kiekvieną pirkinį iš pirkinių krepšelio
+            for item_data in items_data:
+                item_name = item_data.get("name")
+                quantity = item_data.get("quantity")
+                price = item_data.get("price")
+                full_info = item_data.get("full")
+
+                # Nustatoma ar pirkinys yra Maistas ar Gėrimas
+                if "Maistas" in full_info:
+                    item = Food(item_name, quantity, price)
+                else:
+                    item = Drink(item_name, quantity, price)
+
+                # Pirkinys pridedamas į kliento krepšelį
+                customer.add_item(item)
+
+            return customer # Grąžina surinktą informaciją apie klientą
+        except FileNotFoundError: # Jeigu buvo nerastas failas, iš kurio importuoti, išspausdinamas pranešimas
+            print(f"Error: File '{file_path}' not found.")
+        except Exception as e:
+            print(f"Error: {e}")
+        return None
