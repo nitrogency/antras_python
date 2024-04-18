@@ -11,7 +11,7 @@
         Programa sukuria nurodytus prekių objektus ir atlieka Item klasės funkcijas full_info() ir to_dict().
 """
 
-from shop_items import Item
+from shop.shop_items import Item
 
 i1 = Item("Morkos")
 i2 = Item("Pienas", 2, 1.5)

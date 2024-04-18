@@ -12,7 +12,7 @@
         Programa sukuria nurodytus maisto ir gėrimo prekių objektus ir atlieka klasių funkcijas full_info().
 """
 
-from shop_items import Food, Drink
+from shop.shop_items import Food, Drink
 
 f1 = Food("Batonas", 2, 1.3)
 f2 = Food("Sviestas", 1, 1.3)

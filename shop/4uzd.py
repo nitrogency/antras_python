@@ -10,8 +10,8 @@
         Programa prideda nurodytus klientus su jų prekių krepšelias. Yra atspausdinami jų prekės iš krepšelių ir atliekamos įvairios funckijos keičiant krepšelius.
 """
 
-from shop_customers import Customer
-from shop_items import Food, Drink
+from shop.shop_customers import Customer
+from sshop.shop_items import Food, Drink
 
 # Pavyzdinis panaudojimas:
 c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])

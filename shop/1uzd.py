@@ -1,4 +1,4 @@
-from shop_customers import Customer
+from shop.shop_customers import Customer
 
 c1 = Customer("Jonas Jonaitis")
 c2 = Customer("Petras Petraitis")
