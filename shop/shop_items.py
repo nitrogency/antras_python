@@ -45,11 +45,12 @@ class Item:
     def full_info(self): # Sukuria ir gražina tekstą sudarytą iš prekės duomenų
         return "{} {} {} {}".format(self.name, self.price, self.quantity, self.get_total_price())
 
-    def to_dict(self): # Sukuria ir gražina žodyną sudarytą iš prekės duoemenų
+    def to_dict(self): # Sukuria ir gražina žodyną sudarytą iš prekės duomenų
         return {"name": self.name,
                 "quantity": self.quantity,
                 "price": self.price,
-                "total_price" : self.get_total_price()
+                "total_price" : self.get_total_price(),
+                "full": self.full_info()#5 užduoties metu pridėtas duomuo
                 }
 
 """
